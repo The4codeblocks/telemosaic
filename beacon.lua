@@ -88,5 +88,6 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "telemosaic:beacon_off",
 	type = "shapeless",
-	recipe = {"telemosaic:beacon_off_protected"}
+	recipe = {"telemosaic:beacon_off_protected"},
+	replacements = {{"telemosaic:beacon_off_protected", "default:steel_ingot"}}
 })
