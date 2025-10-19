@@ -282,10 +282,10 @@ function telemosaic.rightclick(pos, node, player, itemstack, pointed_thing)
 
 	elseif item == "telemosaic:key" then
 		-- Try to set a new destination
-		local dest = itemstack:get_meta():get_string("")
-		local src = core.pos_to_string(pos)
-		if dest ~= src and not minetest.is_protected(pos, player_name) then
-			local dest = unpack_pos(dest)
+		local dest_string = itemstack:get_meta():get_string("")
+		local src_string = core.pos_to_string(pos)
+		if dest_string ~= src_string and not minetest.is_protected(pos, player_name) then
+			local dest = unpack_pos(dest_string)
 			if not dest then
 				-- This should never happen, but tell the player if it does
 				minetest.chat_send_player(player_name,
@@ -298,10 +298,10 @@ function telemosaic.rightclick(pos, node, player, itemstack, pointed_thing)
 				)
 			else
 				-- Everything is good, set the destination and update the telemosaic
-				minetest.get_meta(pos):set_string("telemosaic:dest", dest)
+				minetest.get_meta(pos):set_string("telemosaic:dest", dest_string)
 				telemosaic.check_beacon(pos, player_name)
 				minetest.log("action", "[telemosaic] " .. player_name .. " set the destination pos of the telemosaic at "
-					.. minetest.pos_to_string(pos)  .. " to " .. minetest.pos_to_string(dest))
+					.. src_string  .. " to " .. dest_string)
 			end
 			if player:get_player_control().sneak then
 				return itemstack  -- Don't destroy key
