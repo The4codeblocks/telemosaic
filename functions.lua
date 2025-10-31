@@ -188,11 +188,11 @@ function telemosaic.check_beacon(pos, player_name, all_checks)
 end
 
 function telemosaic.set_destination(pos, dest)
-	local packed_dest = core.pos_to_string(dest)
-	if core.pos_to_string(pos) == packed_dest or not telemosaic.is_valid_destination(dest) then
+	local dest_string = core.pos_to_string(dest)
+	if core.pos_to_string(pos) == dest_string or not telemosaic.is_valid_destination(dest) then
 		return  -- Don't allow setting invalid destination
 	end
-	core.get_meta(pos):set_string("telemosaic:dest", packed_dest)
+	core.get_meta(pos):set_string("telemosaic:dest", dest_string)
 	telemosaic.check_beacon(pos)
 end
 
